@@ -6,12 +6,13 @@
     justify-content: space-between;
     border: 1px solid #a6a5a5;
 }
-.Line{
+
+.Line {
     margin: 0.2rem;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    border-bottom:  1px solid #fdfdfd;
+    border-bottom: 1px solid #fdfdfd;
 
 }

@@ -11,8 +11,8 @@ function ListItem(props) {
     let elementStringMail = props.data.email;
 
 
-    function sayEdit(id) {
-        console.log("sayEdit", id)
+    function onClickEdit(id) {
+        console.log("Edit", id)
         let navString = "notification=edit&id=" + id;
         navigate({pathname: "edit", search: navString,});
     }
@@ -43,7 +43,7 @@ function ListItem(props) {
             <div>{elementStringName}</div>
             <div>{elementStringMail}</div>
             <div>
-                <button  onClick={() => sayEdit(props.data.id)}>✍️</button>
+                <button onClick={() => onClickEdit(props.data.id)}>✍️</button>
                 <button onClick={() => onClickDeleteUser(props.data.id)}>🗑</button>
             </div>
         </div>

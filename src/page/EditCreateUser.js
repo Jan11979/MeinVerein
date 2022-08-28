@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import logo from "../logo.svg";
 import NameField from "./element/NameField";
@@ -24,8 +24,8 @@ export default function EditCreateUser() {
     const [image, setImage] = useState('');
 
     const [infoList, setInfoList] = useState([]);
-
     const [userData, setUserData] = useState([]);
+
     const fetchLoadData = async () => {
         const response = await fetch(
             'https://dummyjson.com/users/' + idParam
@@ -82,7 +82,7 @@ export default function EditCreateUser() {
 
     const fetchNewUser = async () => {
 
-        if(prepareANdCheckUserData() === 0){
+        if (prepareANdCheckUserData() === 0) {
             const response = await fetch('https://dummyjson.com/users/add', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
@@ -103,7 +103,7 @@ export default function EditCreateUser() {
 
     const fetchUpdateUser = async () => {
 
-        if(prepareANdCheckUserData() === 0){
+        if (prepareANdCheckUserData() === 0) {
             const response = await fetch('https://dummyjson.com/users/' + userData.id, {
                 method: 'PUT',
                 headers: {'Content-Type': 'application/json'},
@@ -166,8 +166,8 @@ export default function EditCreateUser() {
     return (
         <div className="Body">
             {userData
-                ? <div >
-                    < NameField  setFirstName={setFirstName} setLastName={setLastName} valueFirstName={firstName}
+                ? <div>
+                    < NameField setFirstName={setFirstName} setLastName={setLastName} valueFirstName={firstName}
                                 valueLastName={lastName}/>
                     <p>< BirthDateField setBirthDate={setBirthDate} valueBirthDate={birthDate}/></p>
                     <p>< EmailField setEmail={setEmail} valueEmail={eMail}/></p>

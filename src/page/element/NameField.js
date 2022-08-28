@@ -23,23 +23,23 @@ export default function NameField(props) {
     return (
         <div>
             <div>
-            <label>Vorname:
-                <input
-                    type="text"
-                    value={props.valueFirstName}
-                    onChange={onInputChangeFirstName}
-                />
-            </label>
-                </div>
+                <label>Vorname:
+                    <input
+                        type="text"
+                        value={props.valueFirstName}
+                        onChange={onInputChangeFirstName}
+                    />
+                </label>
+            </div>
             <div>
-            <label>Nachname:
-                <input
-                    type="text"
-                    value={props.valueLastName}
-                    onChange={onInputChangeLastName}
-                />
-            </label>
-                </div>
+                <label>Nachname:
+                    <input
+                        type="text"
+                        value={props.valueLastName}
+                        onChange={onInputChangeLastName}
+                    />
+                </label>
+            </div>
         </div>
     )
 

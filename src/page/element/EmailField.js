@@ -1,11 +1,7 @@
 function CheckOnlyValidEmailLetters(value) {
 
     const re = /^[A-Za-z0-9@.!#$%&'*+-/=?^_`{|}~]+$/;
-    if (value.match(re) === null) {
-        return false;
-    }
-
-    return true;
+    return value.match(re) !== null;
 }
 
 export default function EmailField(props) {
