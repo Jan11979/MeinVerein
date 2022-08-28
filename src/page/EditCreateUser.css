@@ -1,0 +1,8 @@
+.Body {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #a6a5a5;
+}

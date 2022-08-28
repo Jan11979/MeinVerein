@@ -1,6 +1,6 @@
-function CheckOnlyValidEmailLetters( value ) {
+function CheckOnlyValidEmailLetters(value) {
 
-    const re = /^[A-Za-z0-9.!#$%&'*+-/=?^_`{|}~]+$/;
+    const re = /^[A-Za-z0-9@.!#$%&'*+-/=?^_`{|}~]+$/;
     if (value.match(re) === null) {
         return false;
     }
@@ -8,25 +8,25 @@ function CheckOnlyValidEmailLetters( value ) {
     return true;
 }
 
-export default function EmailField( props ) {
+export default function EmailField(props) {
 
     const onImputChange = e => {
-        const { value } = e.target;
-        if (CheckOnlyValidEmailLetters( value )) {
+        const {value} = e.target;
+        if (CheckOnlyValidEmailLetters(value)) {
             props.setEmail(value);
         }
     }
 
-    return(
-        <form>
-            <label>Email:
-                <input
-                    type="text"
-                    value={props.valueEmail}
-                    onChange={onImputChange}
-                />
-            </label>
+    return (
 
-        </form>
+        <label>Email:
+            <input
+                type="text"
+                value={props.valueEmail}
+                onChange={onImputChange}
+            />
+        </label>
+
+
     )
 }

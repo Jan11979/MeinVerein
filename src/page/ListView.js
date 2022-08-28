@@ -1,32 +1,51 @@
 import {useEffect, useState} from "react";
 import logo from "../logo.svg";
 import {useNavigate} from "react-router-dom";
+import './ListView.css';
 
-function ListItem( props ) {
+function ListItem(props) {
     let navigate = useNavigate();
 
-    let elementString = "";
-    elementString += props.data.lastName;
-    elementString += ", "
-    elementString += props.data.firstName;
-    elementString += ", "
-    elementString += props.data.email;
+    let elementStringName = "";
+    elementStringName = props.data.lastName + ", " + props.data.firstName;
+    let elementStringMail = props.data.email;
+
 
     function sayEdit(id) {
         console.log("sayEdit", id)
-        let navString="notification="+"edit"+"&id="+id;
-        navigate({ pathname: "edit", search: navString, });
+        let navString = "notification=edit&id=" + id;
+        navigate({pathname: "edit", search: navString,});
     }
-    function sayDelete(id) {
-        console.log("sayDelete", id)
+
+    const fetchDelete = async (id) => {
+        const response = await fetch(
+            'https://dummyjson.com/users/' + id, {
+                method: 'DELETE',
+            });
+        const data = await response.json();
+        console.log("User ID(", id, ") is Deleted = ", data.isDeleted);
+
+    };
+
+    function onClickDeleteUser(id) {
+        console.log("Delete User ID ", id)
+        fetchDelete(id);
+
+        // Hier sollte noch ein Feedback für den Admin eingebaut werden,
+        // das die Daten gelöscht wurden oder es einen Fehler gab.
+        // Es gibt jetzt nur eine console ausgabe.
+
     }
 
 
-    return(
-        <div>
-            {elementString}
-            <button onClick={() => sayEdit(props.data.id)}>✍️</button>
-            <button onClick={() => sayDelete(props.data.id)}>🗑</button>
+    return (
+        <div className="Line">
+            <div>{elementStringName}</div>
+            <div>{elementStringMail}</div>
+            <div>
+                <button  onClick={() => sayEdit(props.data.id)}>✍️</button>
+                <button onClick={() => onClickDeleteUser(props.data.id)}>🗑</button>
+            </div>
         </div>
     )
 }
@@ -37,8 +56,8 @@ export default function ListView() {
     let navigate = useNavigate();
 
     function onClickNewUser() {
-        let navString="notification="+"new"+"&id="+0;
-            navigate({ pathname: "edit", search: navString, });
+        let navString = "notification=new&id=" + 0;
+        navigate({pathname: "edit", search: navString,});
     }
 
     const [posts, setPosts] = useState([]);
@@ -54,24 +73,23 @@ export default function ListView() {
     }, []);
 
 
-    fetch('https://dummyjson.com/users')
-        .then(res => res.json())
-        .then(console.log);
-
     return (
         <div>
-            <button onClick={onClickNewUser}>New User</button>
-            { posts.users
-                ? <div>
-                    <p> </p>
-                    {posts.users.map((elem, i) => {
-                        return (
-                            < ListItem data={elem} key={i}/>
-                        );
-                    })}
-                </div>
-                : <img src={logo} className="App-logo" alt="logo"/>
-            }
+            <button onClick={onClickNewUser}>Neuer Eintrag</button>
+            <div className="Body">
+
+                {posts.users
+                    ? <div>
+                        <p></p>
+                        {posts.users.map((elem, i) => {
+                            return (
+                                < ListItem data={elem} key={i}/>
+                            );
+                        })}
+                    </div>
+                    : <img src={logo} className="App-logo" alt="logo"/>
+                }
+            </div>
         </div>
     )
 }
